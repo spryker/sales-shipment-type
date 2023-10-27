@@ -31,10 +31,10 @@ use SprykerTest\Zed\SalesShipmentType\SalesShipmentTypeBusinessTester;
  * @group SalesShipmentType
  * @group Business
  * @group Facade
- * @group UpdateSalesShipmentsWithSalesShipmentTypeTest
+ * @group SaveSalesShipmentsWithSalesShipmentTypeTest
  * Add your own group annotations below this line
  */
-class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
+class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
 {
     /**
      * @var string
@@ -60,7 +60,7 @@ class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $saveOrderTransfer->getOrderItems()->getIterator()->current()->setShipment($shipmentTransfer);
 
         // Act
-        $this->tester->getFacade()->updateSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
+        $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
 
         // Assert
         $salesShipmentTypeEntity = $this->tester->findSalesShipmentTypeEntity(
@@ -91,7 +91,7 @@ class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $saveOrderTransfer->getOrderItems()->getIterator()->current()->setShipment($shipmentTransfer);
 
         // Act
-        $this->tester->getFacade()->updateSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
+        $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
 
         // Assert
         $newSalesShipmentTypeEntity = $this->tester->findSalesShipmentTypeEntity(
@@ -137,7 +137,7 @@ class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $salesShipmentTypeFacade = $this->createSalesShipmentTypeFacadeMock($salesShipmentTypeBusinessFactory);
 
         // Act
-        $salesShipmentTypeFacade->updateSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
+        $salesShipmentTypeFacade->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
     }
 
     /**
@@ -158,7 +158,7 @@ class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $saveOrderTransfer->getOrderItems()->getIterator()->current()->setShipment($shipmentTransfer);
 
         // Act
-        $this->tester->getFacade()->updateSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
+        $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
 
         // Assert
         $salesShipmentEntity = $this->tester->findSalesShipmentEntity($shipmentTransfer->getIdSalesShipmentOrFail());
@@ -193,7 +193,7 @@ class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $itemTransferIterator->current()->setShipment($shipmentTransfer2);
 
         // Act
-        $this->tester->getFacade()->updateSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
+        $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
 
         // Assert
         $salesShipmentEntity1 = $this->tester->findSalesShipmentEntity($shipmentTransfer1->getIdSalesShipmentOrFail());
@@ -228,7 +228,7 @@ class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $salesShipmentTypeFacade = $this->createSalesShipmentTypeFacadeMock($salesShipmentTypeBusinessFactory);
 
         // Act
-        $salesShipmentTypeFacade->updateSalesShipmentsWithSalesShipmentType(new QuoteTransfer(), $saveOrderTransfer);
+        $salesShipmentTypeFacade->saveSalesShipmentsWithSalesShipmentType(new QuoteTransfer(), $saveOrderTransfer);
     }
 
     /**
@@ -247,7 +247,7 @@ class UpdateSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $this->expectException(NullValueException::class);
 
         // Act
-        $this->tester->getFacade()->updateSalesShipmentsWithSalesShipmentType(new QuoteTransfer(), $saveOrderTransfer);
+        $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType(new QuoteTransfer(), $saveOrderTransfer);
     }
 
     /**
