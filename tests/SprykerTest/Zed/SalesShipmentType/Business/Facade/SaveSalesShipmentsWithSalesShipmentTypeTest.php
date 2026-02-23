@@ -16,9 +16,6 @@ use Generated\Shared\Transfer\SaveOrderTransfer;
 use Generated\Shared\Transfer\ShipmentTransfer;
 use Generated\Shared\Transfer\ShipmentTypeTransfer;
 use Spryker\Shared\Kernel\Transfer\Exception\NullValueException;
-use Spryker\Zed\SalesShipmentType\Business\SalesShipmentTypeBusinessFactory;
-use Spryker\Zed\SalesShipmentType\Business\SalesShipmentTypeFacade;
-use Spryker\Zed\SalesShipmentType\Business\SalesShipmentTypeFacadeInterface;
 use Spryker\Zed\SalesShipmentType\Persistence\SalesShipmentTypeEntityManager;
 use Spryker\Zed\SalesShipmentType\Persistence\SalesShipmentTypeEntityManagerInterface;
 use SprykerTest\Zed\SalesShipmentType\SalesShipmentTypeBusinessTester;
@@ -133,11 +130,10 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $salesShipmentTypeEntityManager = $this->createSalesShipmentTypeEntityManagerMock();
         $salesShipmentTypeEntityManager->expects($this->never())
             ->method('createSalesShipmentType');
-        $salesShipmentTypeBusinessFactory = $this->createSalesShipmentTypeBusinessFactoryMock($salesShipmentTypeEntityManager);
-        $salesShipmentTypeFacade = $this->createSalesShipmentTypeFacadeMock($salesShipmentTypeBusinessFactory);
+        $this->tester->mockFacadeMethod('getEntityManager', $salesShipmentTypeEntityManager);
 
         // Act
-        $salesShipmentTypeFacade->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
+        $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
     }
 
     /**
@@ -224,11 +220,10 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
             ->method('createSalesShipmentType');
         $salesShipmentTypeEntityManager->expects($this->never())
             ->method('updateSalesShipmentWithSalesShipmentType');
-        $salesShipmentTypeBusinessFactory = $this->createSalesShipmentTypeBusinessFactoryMock($salesShipmentTypeEntityManager);
-        $salesShipmentTypeFacade = $this->createSalesShipmentTypeFacadeMock($salesShipmentTypeBusinessFactory);
+        $this->tester->mockFacadeMethod('getEntityManager', $salesShipmentTypeEntityManager);
 
         // Act
-        $salesShipmentTypeFacade->saveSalesShipmentsWithSalesShipmentType(new QuoteTransfer(), $saveOrderTransfer);
+        $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType(new QuoteTransfer(), $saveOrderTransfer);
     }
 
     /**
@@ -285,46 +280,6 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
                     ->build(),
             ],
         ];
-    }
-
-    /**
-     * @param \Spryker\Zed\SalesShipmentType\Business\SalesShipmentTypeBusinessFactory $salesShipmentTypeBusinessFactory
-     *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\SalesShipmentType\Business\SalesShipmentTypeFacadeInterface
-     */
-    protected function createSalesShipmentTypeFacadeMock(SalesShipmentTypeBusinessFactory $salesShipmentTypeBusinessFactory): SalesShipmentTypeFacadeInterface
-    {
-        $salesShipmentTypeFacadeMock = $this->getMockBuilder(SalesShipmentTypeFacade::class)
-            ->enableProxyingToOriginalMethods()
-            ->onlyMethods(['getFactory'])
-            ->getMock();
-        $salesShipmentTypeFacadeMock
-            ->method('getFactory')
-            ->willReturn($salesShipmentTypeBusinessFactory);
-
-        return $salesShipmentTypeFacadeMock;
-    }
-
-    /**
-     * @param \Spryker\Zed\SalesShipmentType\Persistence\SalesShipmentTypeEntityManagerInterface $salesShipmentTypeEntityManagerMock
-     *
-     * @return \PHPUnit\Framework\MockObject\MockObject|\Spryker\Zed\SalesShipmentType\Business\SalesShipmentTypeBusinessFactory
-     */
-    protected function createSalesShipmentTypeBusinessFactoryMock(
-        SalesShipmentTypeEntityManagerInterface $salesShipmentTypeEntityManagerMock
-    ): SalesShipmentTypeBusinessFactory {
-        $salesShipmentTypeBusinessFactory = $this->getMockBuilder(SalesShipmentTypeBusinessFactory::class)
-            ->enableProxyingToOriginalMethods()
-            ->onlyMethods([
-                'getEntityManager',
-            ])
-            ->getMock();
-
-        $salesShipmentTypeBusinessFactory
-            ->method('getEntityManager')
-            ->willReturn($salesShipmentTypeEntityManagerMock);
-
-        return $salesShipmentTypeBusinessFactory;
     }
 
     /**
