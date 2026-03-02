@@ -24,10 +24,6 @@ class SalesShipmentTypeCreator implements SalesShipmentTypeCreatorInterface
      */
     protected SalesShipmentTypeMapperInterface $salesShipmentTypeMapper;
 
-    /**
-     * @param \Spryker\Zed\SalesShipmentType\Persistence\SalesShipmentTypeEntityManagerInterface $salesShipmentTypeEntityManager
-     * @param \Spryker\Zed\SalesShipmentType\Business\Mapper\SalesShipmentTypeMapperInterface $salesShipmentTypeMapper
-     */
     public function __construct(
         SalesShipmentTypeEntityManagerInterface $salesShipmentTypeEntityManager,
         SalesShipmentTypeMapperInterface $salesShipmentTypeMapper
@@ -36,11 +32,6 @@ class SalesShipmentTypeCreator implements SalesShipmentTypeCreatorInterface
         $this->salesShipmentTypeMapper = $salesShipmentTypeMapper;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTypeTransfer $shipmentTypeTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentTypeTransfer
-     */
     public function createSalesShipmentType(ShipmentTypeTransfer $shipmentTypeTransfer): SalesShipmentTypeTransfer
     {
         $salesShipmentTypeTransfer = $this->salesShipmentTypeMapper->mapShipmentTypeTransferToSalesShipmentTypeTransfer(

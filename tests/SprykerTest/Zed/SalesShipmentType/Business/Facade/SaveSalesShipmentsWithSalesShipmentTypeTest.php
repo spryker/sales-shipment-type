@@ -43,9 +43,6 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
      */
     protected SalesShipmentTypeBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testCreatesSalesShipmentTypeWhenItDoesNotExist(): void
     {
         // Arrange
@@ -68,9 +65,6 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $this->assertSame($shipmentTypeTransfer->getNameOrFail(), $salesShipmentTypeEntity->getName());
     }
 
-    /**
-     * @return void
-     */
     public function testCreatesNewSalesShipmentTypeWhenItIsAlreadyExistAndShipmentTypeNameWasUpdated(): void
     {
         // Arrange
@@ -110,9 +104,6 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $this->assertSame($salesShipmentTypeTransfer->getKeyOrFail(), $oldSalesShipmentTypeEntity->getKey());
     }
 
-    /**
-     * @return void
-     */
     public function testDoNotUpdateSalesShipmentTypeWhenTheShipmentTypeWasNotChanged(): void
     {
         $shipmentTypeTransfer = $this->tester->haveShipmentType();
@@ -136,9 +127,6 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $this->tester->getFacade()->saveSalesShipmentsWithSalesShipmentType($quoteTransfer, $saveOrderTransfer);
     }
 
-    /**
-     * @return void
-     */
     public function testUpdatesSalesShipmentWithIdSalesShipmentType(): void
     {
         // Arrange
@@ -162,9 +150,6 @@ class SaveSalesShipmentsWithSalesShipmentTypeTest extends Unit
         $this->assertSame($salesShipmentTypeTransfer->getIdSalesShipmentTypeOrFail(), $salesShipmentEntity->getFkSalesShipmentType());
     }
 
-    /**
-     * @return void
-     */
     public function testUpdatesSalesShipmentWithIdSalesShipmentTypeForMultipleShipments(): void
     {
         // Arrange

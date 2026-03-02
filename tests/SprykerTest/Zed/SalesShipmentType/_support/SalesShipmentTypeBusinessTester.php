@@ -60,12 +60,6 @@ class SalesShipmentTypeBusinessTester extends Actor
         return $quoteBuilder->build();
     }
 
-    /**
-     * @param string $shipmentTypeKey
-     * @param string $shipmentTypeName
-     *
-     * @return \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType|null
-     */
     public function findSalesShipmentTypeEntity(string $shipmentTypeKey, string $shipmentTypeName): ?SpySalesShipmentType
     {
         return $this->getSalesShipmentTypeQuery()
@@ -74,11 +68,6 @@ class SalesShipmentTypeBusinessTester extends Actor
             ->findOne();
     }
 
-    /**
-     * @param int $idSalesShipment
-     *
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipment|null
-     */
     public function findSalesShipmentEntity(int $idSalesShipment): ?SpySalesShipment
     {
         return $this->getSalesShipmentQuery()
@@ -86,17 +75,11 @@ class SalesShipmentTypeBusinessTester extends Actor
             ->findOne();
     }
 
-    /**
-     * @return \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentTypeQuery
-     */
     protected function getSalesShipmentTypeQuery(): SpySalesShipmentTypeQuery
     {
         return SpySalesShipmentTypeQuery::create();
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipmentQuery
-     */
     protected function getSalesShipmentQuery(): SpySalesShipmentQuery
     {
         return SpySalesShipmentQuery::create();

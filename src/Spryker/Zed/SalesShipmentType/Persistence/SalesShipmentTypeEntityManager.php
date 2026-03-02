@@ -16,11 +16,6 @@ use Spryker\Zed\Kernel\Persistence\AbstractEntityManager;
  */
 class SalesShipmentTypeEntityManager extends AbstractEntityManager implements SalesShipmentTypeEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SalesShipmentTypeTransfer $salesShipmentTypeTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentTypeTransfer
-     */
     public function createSalesShipmentType(SalesShipmentTypeTransfer $salesShipmentTypeTransfer): SalesShipmentTypeTransfer
     {
         $salesShipmentTypeMapper = $this->getFactory()->createSalesShipmentTypeMapper();

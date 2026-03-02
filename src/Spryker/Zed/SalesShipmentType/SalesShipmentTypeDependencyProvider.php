@@ -21,11 +21,6 @@ class SalesShipmentTypeDependencyProvider extends AbstractBundleDependencyProvid
      */
     public const PROPEL_QUERY_SALES_SHIPMENT = 'PROPEL_QUERY_SALES_SHIPMENT';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function providePersistenceLayerDependencies(Container $container): Container
     {
         $container = parent::providePersistenceLayerDependencies($container);
@@ -35,11 +30,6 @@ class SalesShipmentTypeDependencyProvider extends AbstractBundleDependencyProvid
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addSalesShipmentPropelQuery(Container $container): Container
     {
         $container->set(static::PROPEL_QUERY_SALES_SHIPMENT, $container->factory(function () {

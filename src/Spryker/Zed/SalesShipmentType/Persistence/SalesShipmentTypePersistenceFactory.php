@@ -20,25 +20,16 @@ use Spryker\Zed\SalesShipmentType\SalesShipmentTypeDependencyProvider;
  */
 class SalesShipmentTypePersistenceFactory extends AbstractPersistenceFactory
 {
-    /**
-     * @return \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentTypeQuery
-     */
     public function createSalesShipmentTypeQuery(): SpySalesShipmentTypeQuery
     {
         return SpySalesShipmentTypeQuery::create();
     }
 
-    /**
-     * @return \Spryker\Zed\SalesShipmentType\Persistence\Propel\Mapper\SalesShipmentTypeMapper
-     */
     public function createSalesShipmentTypeMapper(): SalesShipmentTypeMapper
     {
         return new SalesShipmentTypeMapper();
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesShipmentQuery
-     */
     public function getSalesShipmentPropelQuery(): SpySalesShipmentQuery
     {
         return $this->getProvidedDependency(SalesShipmentTypeDependencyProvider::PROPEL_QUERY_SALES_SHIPMENT);

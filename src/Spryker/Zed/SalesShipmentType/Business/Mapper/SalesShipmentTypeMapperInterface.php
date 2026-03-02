@@ -12,12 +12,6 @@ use Generated\Shared\Transfer\ShipmentTypeTransfer;
 
 interface SalesShipmentTypeMapperInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ShipmentTypeTransfer $shipmentTypeTransfer
-     * @param \Generated\Shared\Transfer\SalesShipmentTypeTransfer $salesShipmentTypeTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentTypeTransfer
-     */
     public function mapShipmentTypeTransferToSalesShipmentTypeTransfer(
         ShipmentTypeTransfer $shipmentTypeTransfer,
         SalesShipmentTypeTransfer $salesShipmentTypeTransfer

@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\SaveOrderTransfer;
 
 interface SalesShipmentUpdaterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     public function saveSalesShipmentsWithSalesShipmentType(SaveOrderTransfer $saveOrderTransfer): SaveOrderTransfer;
 }

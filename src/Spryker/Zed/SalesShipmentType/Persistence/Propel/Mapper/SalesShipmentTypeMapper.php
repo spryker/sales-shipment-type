@@ -33,12 +33,6 @@ class SalesShipmentTypeMapper
         return $salesShipmentTypeTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesShipmentTypeTransfer $salesShipmentTypeTransfer
-     * @param \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType $salesShipmentTypeEntity
-     *
-     * @return \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType
-     */
     public function mapSalesShipmentTypeTransferToSalesShipmentTypeEntity(
         SalesShipmentTypeTransfer $salesShipmentTypeTransfer,
         SpySalesShipmentType $salesShipmentTypeEntity
@@ -48,12 +42,6 @@ class SalesShipmentTypeMapper
         return $salesShipmentTypeEntity;
     }
 
-    /**
-     * @param \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType $salesShipmentTypeEntity
-     * @param \Generated\Shared\Transfer\SalesShipmentTypeTransfer $salesShipmentTypeTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentTypeTransfer
-     */
     public function mapSalesShipmentTypeEntityToSalesShipmentTypeTransfer(
         SpySalesShipmentType $salesShipmentTypeEntity,
         SalesShipmentTypeTransfer $salesShipmentTypeTransfer

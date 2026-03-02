@@ -11,18 +11,7 @@ use Generated\Shared\Transfer\SalesShipmentTypeTransfer;
 
 interface SalesShipmentTypeEntityManagerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\SalesShipmentTypeTransfer $salesShipmentTypeTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentTypeTransfer
-     */
     public function createSalesShipmentType(SalesShipmentTypeTransfer $salesShipmentTypeTransfer): SalesShipmentTypeTransfer;
 
-    /**
-     * @param int $idSalesShipment
-     * @param int $idSalesShipmentType
-     *
-     * @return void
-     */
     public function updateSalesShipmentWithSalesShipmentType(int $idSalesShipment, int $idSalesShipmentType): void;
 }

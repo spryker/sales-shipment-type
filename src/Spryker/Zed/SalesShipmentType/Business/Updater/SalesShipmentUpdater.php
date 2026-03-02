@@ -40,12 +40,6 @@ class SalesShipmentUpdater implements SalesShipmentUpdaterInterface
      */
     protected SalesShipmentTypeGrouperInterface $salesShipmentTypeGrouper;
 
-    /**
-     * @param \Spryker\Zed\SalesShipmentType\Persistence\SalesShipmentTypeEntityManagerInterface $salesShipmentTypeEntityManager
-     * @param \Spryker\Zed\SalesShipmentType\Persistence\SalesShipmentTypeRepositoryInterface $salesShipmentTypeRepository
-     * @param \Spryker\Zed\SalesShipmentType\Business\Creator\SalesShipmentTypeCreatorInterface $salesShipmentTypeCreator
-     * @param \Spryker\Zed\SalesShipmentType\Business\Grouper\SalesShipmentTypeGrouperInterface $salesShipmentTypeGrouper
-     */
     public function __construct(
         SalesShipmentTypeEntityManagerInterface $salesShipmentTypeEntityManager,
         SalesShipmentTypeRepositoryInterface $salesShipmentTypeRepository,
@@ -58,11 +52,6 @@ class SalesShipmentUpdater implements SalesShipmentUpdaterInterface
         $this->salesShipmentTypeGrouper = $salesShipmentTypeGrouper;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SaveOrderTransfer $saveOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\SaveOrderTransfer
-     */
     public function saveSalesShipmentsWithSalesShipmentType(
         SaveOrderTransfer $saveOrderTransfer
     ): SaveOrderTransfer {
@@ -154,11 +143,6 @@ class SalesShipmentUpdater implements SalesShipmentUpdaterInterface
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return bool
-     */
     protected function isRequiredDataProvided(ItemTransfer $itemTransfer): bool
     {
         return $itemTransfer->getShipmentType() !== null

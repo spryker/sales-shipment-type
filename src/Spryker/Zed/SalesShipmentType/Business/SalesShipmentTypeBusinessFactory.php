@@ -24,9 +24,6 @@ use Spryker\Zed\SalesShipmentType\Business\Updater\SalesShipmentUpdaterInterface
  */
 class SalesShipmentTypeBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\SalesShipmentType\Business\Updater\SalesShipmentUpdaterInterface
-     */
     public function createSalesShipmentUpdater(): SalesShipmentUpdaterInterface
     {
         return new SalesShipmentUpdater(
@@ -37,9 +34,6 @@ class SalesShipmentTypeBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\SalesShipmentType\Business\Creator\SalesShipmentTypeCreatorInterface
-     */
     public function createSalesShipmentTypeCreator(): SalesShipmentTypeCreatorInterface
     {
         return new SalesShipmentTypeCreator(
@@ -48,17 +42,11 @@ class SalesShipmentTypeBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\SalesShipmentType\Business\Mapper\SalesShipmentTypeMapperInterface
-     */
     public function createSalesShipmentTypeMapper(): SalesShipmentTypeMapperInterface
     {
         return new SalesShipmentTypeMapper();
     }
 
-    /**
-     * @return \Spryker\Zed\SalesShipmentType\Business\Grouper\SalesShipmentTypeGrouperInterface
-     */
     public function createSalesShipmentTypeGrouper(): SalesShipmentTypeGrouperInterface
     {
         return new SalesShipmentTypeGrouper();

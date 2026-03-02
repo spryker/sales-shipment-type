@@ -34,11 +34,6 @@ class SalesShipmentTypeHelper extends Module
         return $salesShipmentTypeTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesShipmentTypeTransfer $salesShipmentTypeTransfer
-     *
-     * @return \Generated\Shared\Transfer\SalesShipmentTypeTransfer
-     */
     protected function saveSalesShipmentTypeEntity(SalesShipmentTypeTransfer $salesShipmentTypeTransfer): SalesShipmentTypeTransfer
     {
         $salesShipmentTypeEntity = $this->getSalesShipmentTypeQuery()
@@ -50,11 +45,6 @@ class SalesShipmentTypeHelper extends Module
         return $salesShipmentTypeTransfer->fromArray($salesShipmentTypeEntity->toArray(), true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SalesShipmentTypeTransfer $salesShipmentTypeTransfer
-     *
-     * @return void
-     */
     protected function cleanupSalesShipmentType(SalesShipmentTypeTransfer $salesShipmentTypeTransfer): void
     {
         $this->getSalesShipmentTypeQuery()
@@ -62,9 +52,6 @@ class SalesShipmentTypeHelper extends Module
             ->delete();
     }
 
-    /**
-     * @return \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentTypeQuery
-     */
     protected function getSalesShipmentTypeQuery(): SpySalesShipmentTypeQuery
     {
         return SpySalesShipmentTypeQuery::create();
