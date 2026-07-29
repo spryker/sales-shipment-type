@@ -10,8 +10,12 @@ namespace Spryker\Zed\SalesShipmentType\Business;
 use Spryker\Zed\Kernel\Business\AbstractBusinessFactory;
 use Spryker\Zed\SalesShipmentType\Business\Creator\SalesShipmentTypeCreator;
 use Spryker\Zed\SalesShipmentType\Business\Creator\SalesShipmentTypeCreatorInterface;
+use Spryker\Zed\SalesShipmentType\Business\Expander\OrderItemShipmentTypeExpander;
+use Spryker\Zed\SalesShipmentType\Business\Expander\OrderItemShipmentTypeExpanderInterface;
 use Spryker\Zed\SalesShipmentType\Business\Grouper\SalesShipmentTypeGrouper;
 use Spryker\Zed\SalesShipmentType\Business\Grouper\SalesShipmentTypeGrouperInterface;
+use Spryker\Zed\SalesShipmentType\Business\Hydrator\CartReorderItemHydrator;
+use Spryker\Zed\SalesShipmentType\Business\Hydrator\CartReorderItemHydratorInterface;
 use Spryker\Zed\SalesShipmentType\Business\Mapper\SalesShipmentTypeMapper;
 use Spryker\Zed\SalesShipmentType\Business\Mapper\SalesShipmentTypeMapperInterface;
 use Spryker\Zed\SalesShipmentType\Business\Updater\SalesShipmentUpdater;
@@ -50,5 +54,15 @@ class SalesShipmentTypeBusinessFactory extends AbstractBusinessFactory
     public function createSalesShipmentTypeGrouper(): SalesShipmentTypeGrouperInterface
     {
         return new SalesShipmentTypeGrouper();
+    }
+
+    public function createOrderItemShipmentTypeExpander(): OrderItemShipmentTypeExpanderInterface
+    {
+        return new OrderItemShipmentTypeExpander($this->getRepository());
+    }
+
+    public function createCartReorderItemHydrator(): CartReorderItemHydratorInterface
+    {
+        return new CartReorderItemHydrator();
     }
 }

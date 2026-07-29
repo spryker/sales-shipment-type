@@ -7,12 +7,17 @@
 
 namespace Spryker\Zed\SalesShipmentType\Persistence\Propel\Mapper;
 
+use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\SalesShipmentTypeTransfer;
+use Generated\Shared\Transfer\ShipmentTypeTransfer;
+use Orm\Zed\Sales\Persistence\SpySalesShipment;
 use Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType;
 use Propel\Runtime\Collection\Collection;
 
 class SalesShipmentTypeMapper
 {
+    public const string VIRTUAL_COLUMN_ID_SHIPMENT_TYPE = 'id_shipment_type';
+
     /**
      * @param \Propel\Runtime\Collection\Collection<array-key, \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType> $salesShipmentTypeEntities
      * @param list<\Generated\Shared\Transfer\SalesShipmentTypeTransfer> $salesShipmentTypeTransfers
@@ -47,5 +52,51 @@ class SalesShipmentTypeMapper
         SalesShipmentTypeTransfer $salesShipmentTypeTransfer
     ): SalesShipmentTypeTransfer {
         return $salesShipmentTypeTransfer->fromArray($salesShipmentTypeEntity->toArray(), true);
+    }
+
+    /**
+     * @param \Propel\Runtime\Collection\Collection<array-key, \Orm\Zed\Sales\Persistence\SpySalesShipment> $salesShipmentEntities
+     * @param array<int, \Generated\Shared\Transfer\ItemTransfer> $itemTransfers
+     *
+     * @return array<int, \Generated\Shared\Transfer\ItemTransfer>
+     */
+    public function mapSalesShipmentEntitiesToItemTransfers(
+        Collection $salesShipmentEntities,
+        array $itemTransfers
+    ): array {
+        foreach ($salesShipmentEntities as $salesShipmentEntity) {
+            if (!$salesShipmentEntity->getSalesShipmentType()) {
+                continue;
+            }
+
+            foreach ($salesShipmentEntity->getSpySalesOrderItems() as $salesOrderItemEntity) {
+                $idSalesOrderItem = (int)$salesOrderItemEntity->getIdSalesOrderItem();
+                $itemTransfers[$idSalesOrderItem] = $this->mapSalesShipmentEntityToItemTransfer(
+                    $salesShipmentEntity,
+                    (new ItemTransfer())->setIdSalesOrderItem($idSalesOrderItem),
+                );
+            }
+        }
+
+        return $itemTransfers;
+    }
+
+    public function mapSalesShipmentEntityToItemTransfer(
+        SpySalesShipment $salesShipmentEntity,
+        ItemTransfer $itemTransfer
+    ): ItemTransfer {
+        $salesShipmentTypeEntity = $salesShipmentEntity->getSalesShipmentType();
+        if (!$salesShipmentTypeEntity) {
+            return $itemTransfer;
+        }
+
+        $shipmentTypeTransfer = (new ShipmentTypeTransfer())->fromArray($salesShipmentTypeEntity->toArray(), true);
+
+        $idShipmentType = $salesShipmentEntity->getVirtualColumn(static::VIRTUAL_COLUMN_ID_SHIPMENT_TYPE);
+        if ($idShipmentType !== null) {
+            $shipmentTypeTransfer->setIdShipmentType((int)$idShipmentType);
+        }
+
+        return $itemTransfer->setShipmentType($shipmentTypeTransfer);
     }
 }

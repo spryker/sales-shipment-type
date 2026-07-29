@@ -11,6 +11,7 @@ use Codeception\Actor;
 use Generated\Shared\DataBuilder\ItemBuilder;
 use Generated\Shared\DataBuilder\QuoteBuilder;
 use Generated\Shared\Transfer\QuoteTransfer;
+use Orm\Zed\Sales\Persistence\SpySalesOrderItemQuery;
 use Orm\Zed\Sales\Persistence\SpySalesShipment;
 use Orm\Zed\Sales\Persistence\SpySalesShipmentQuery;
 use Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType;
@@ -73,6 +74,29 @@ class SalesShipmentTypeBusinessTester extends Actor
         return $this->getSalesShipmentQuery()
             ->filterByIdSalesShipment($idSalesShipment)
             ->findOne();
+    }
+
+    public function assignSalesOrderItemToSalesShipment(int $idSalesOrderItem, int $idSalesShipment): void
+    {
+        $this->getSalesOrderItemQuery()
+            ->filterByIdSalesOrderItem($idSalesOrderItem)
+            ->findOne()
+            ->setFkSalesShipment($idSalesShipment)
+            ->save();
+    }
+
+    public function assignSalesShipmentTypeToSalesShipment(int $idSalesShipment, int $idSalesShipmentType): void
+    {
+        $this->getSalesShipmentQuery()
+            ->filterByIdSalesShipment($idSalesShipment)
+            ->findOne()
+            ->setFkSalesShipmentType($idSalesShipmentType)
+            ->save();
+    }
+
+    protected function getSalesOrderItemQuery(): SpySalesOrderItemQuery
+    {
+        return SpySalesOrderItemQuery::create();
     }
 
     protected function getSalesShipmentTypeQuery(): SpySalesShipmentTypeQuery

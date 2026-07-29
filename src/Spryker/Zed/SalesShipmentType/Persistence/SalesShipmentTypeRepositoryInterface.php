@@ -7,6 +7,8 @@
 
 namespace Spryker\Zed\SalesShipmentType\Persistence;
 
+use Generated\Shared\Transfer\SalesShipmentTypeCriteriaTransfer;
+
 interface SalesShipmentTypeRepositoryInterface
 {
     /**
@@ -15,4 +17,13 @@ interface SalesShipmentTypeRepositoryInterface
      * @return list<\Generated\Shared\Transfer\SalesShipmentTypeTransfer>
      */
     public function getSalesShipmentTypesByKeys(array $salesShipmentTypeKeys): array;
+
+    /**
+     * @param \Generated\Shared\Transfer\SalesShipmentTypeCriteriaTransfer $salesShipmentTypeCriteriaTransfer
+     *
+     * @return array<int, \Generated\Shared\Transfer\ItemTransfer>
+     */
+    public function getSalesShipmentTypeCollection(
+        SalesShipmentTypeCriteriaTransfer $salesShipmentTypeCriteriaTransfer
+    ): array;
 }

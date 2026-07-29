@@ -7,7 +7,16 @@
         <property name="name" type="string"/>
     </transfer>
 
+    <transfer name="SalesShipmentTypeCriteria" strict="true">
+        <property name="salesShipmentTypeConditions" type="SalesShipmentTypeConditions"/>
+    </transfer>
+
+    <transfer name="SalesShipmentTypeConditions" strict="true">
+        <property name="salesOrderItemIds" type="int[]" singular="salesOrderItemId"/>
+    </transfer>
+
     <transfer name="ShipmentType" strict="true">
+        <property name="idShipmentType" type="int"/>
         <property name="name" type="string"/>
         <property name="key" type="string"/>
     </transfer>
@@ -17,8 +26,16 @@
     </transfer>
 
     <transfer name="Item">
+        <property name="idSalesOrderItem" type="int"/>
+        <property name="sku" type="string"/>
+        <property name="quantity" type="int"/>
         <property name="shipmentType" type="ShipmentType" strict="true"/>
         <property name="shipment" type="Shipment"/>
+    </transfer>
+
+    <transfer name="CartReorder" strict="true">
+        <property name="orderItems" type="Item[]" singular="orderItem"/>
+        <property name="reorderItems" type="Item[]" singular="reorderItem"/>
     </transfer>
 
     <transfer name="Quote">
