@@ -66,6 +66,7 @@ class OrderItemShipmentTypeExpanderTest extends Unit
         $this->assertSame($salesShipmentTypeTransfer->getKeyOrFail(), $itemTransfers[0]->getShipmentTypeOrFail()->getKey());
         $this->assertSame($salesShipmentTypeTransfer->getNameOrFail(), $itemTransfers[0]->getShipmentTypeOrFail()->getName());
         $this->assertSame($shipmentTypeTransfer->getIdShipmentTypeOrFail(), $itemTransfers[0]->getShipmentTypeOrFail()->getIdShipmentType());
+        $this->assertSame($shipmentTypeTransfer->getUuidOrFail(), $itemTransfers[0]->getShipmentTypeOrFail()->getUuid());
         $this->assertNull($itemTransfers[1]->getShipmentType());
     }
 

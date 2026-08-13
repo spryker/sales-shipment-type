@@ -59,7 +59,8 @@ class SalesShipmentTypeRepository extends AbstractRepository implements SalesShi
             ->getSalesShipmentPropelQuery()
             ->joinWithSalesShipmentType(Criteria::INNER_JOIN)
             ->addJoin(SpySalesShipmentTypeTableMap::COL_KEY, SpyShipmentTypeTableMap::COL_KEY, Criteria::LEFT_JOIN)
-            ->withColumn(SpyShipmentTypeTableMap::COL_ID_SHIPMENT_TYPE, SalesShipmentTypeMapper::VIRTUAL_COLUMN_ID_SHIPMENT_TYPE);
+            ->withColumn(SpyShipmentTypeTableMap::COL_ID_SHIPMENT_TYPE, SalesShipmentTypeMapper::VIRTUAL_COLUMN_ID_SHIPMENT_TYPE)
+            ->withColumn(SpyShipmentTypeTableMap::COL_UUID, SalesShipmentTypeMapper::VIRTUAL_COLUMN_UUID);
 
         $salesShipmentQuery = $this->applySalesShipmentFilters($salesShipmentQuery, $salesShipmentTypeCriteriaTransfer);
 

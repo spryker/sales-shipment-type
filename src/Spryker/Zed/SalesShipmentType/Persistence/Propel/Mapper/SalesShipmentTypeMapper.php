@@ -18,6 +18,8 @@ class SalesShipmentTypeMapper
 {
     public const string VIRTUAL_COLUMN_ID_SHIPMENT_TYPE = 'id_shipment_type';
 
+    public const string VIRTUAL_COLUMN_UUID = 'shipment_type_uuid';
+
     /**
      * @param \Propel\Runtime\Collection\Collection<array-key, \Orm\Zed\SalesShipmentType\Persistence\SpySalesShipmentType> $salesShipmentTypeEntities
      * @param list<\Generated\Shared\Transfer\SalesShipmentTypeTransfer> $salesShipmentTypeTransfers
@@ -90,11 +92,20 @@ class SalesShipmentTypeMapper
             return $itemTransfer;
         }
 
+        // spy_sales_shipment_type snapshots only key and name, so uuid can never come from the
+        // entity itself — it is read from the joined live spy_shipment_type. Consumers such as
+        // ShipmentGroupFilter call getUuidOrFail(), so leaving it unset turns any reorder of an
+        // order that carried a shipment type into a 500.
         $shipmentTypeTransfer = (new ShipmentTypeTransfer())->fromArray($salesShipmentTypeEntity->toArray(), true);
 
         $idShipmentType = $salesShipmentEntity->getVirtualColumn(static::VIRTUAL_COLUMN_ID_SHIPMENT_TYPE);
         if ($idShipmentType !== null) {
             $shipmentTypeTransfer->setIdShipmentType((int)$idShipmentType);
+        }
+
+        $uuid = $salesShipmentEntity->getVirtualColumn(static::VIRTUAL_COLUMN_UUID);
+        if ($uuid !== null) {
+            $shipmentTypeTransfer->setUuid($uuid);
         }
 
         return $itemTransfer->setShipmentType($shipmentTypeTransfer);
